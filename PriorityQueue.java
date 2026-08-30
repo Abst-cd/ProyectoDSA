@@ -79,16 +79,58 @@ public class PriorityQueue<T> {
     //el metodo recorre la cola con la variable "actual" y va imprimiendo sus valores, haciendo que se muestre la cola
 
     public T dequeue() {
-        if (this.isEmpty()) {
+        if (this.isEmpty()) { //si esta vacia, no regresa nada
             return null;
+        } 
+    
+        T result = this.front.getData(); //agarramos lo que hay en el frente y lo llamamos como result, generico
+
+        if (size ==1){
+            front = null;
+            tail = null; //si el tamano es 1, se elimina
+            size--;
+
+            return result;
         }
-        T result = this.front.getData();
-        this.front = this.front.getNext();
-        size--;
-        if (this.isEmpty()) {
-            this.tail = null;
+
+        Node<T> ultimo = getPositionNode(size); //definimos un nodo como ultimo 
+
+        front.setData(ultimo.getData());
+        front.setPriority(ultimo.getPriority()); //definimos misma info y prioridad al fron que del ultimo
+
+        Node<T> newTail = getPositionNode(size - 1);
+        newTail.setNext(null);
+        tail = newTail;//definimos nueva tail y desconectamos nodo para eliminarlo
+        size --;
+
+        int posActual = 1;
+        while (getHijoIzq(posActual) <= size){
+            int posHijoIzq = getHijoIzq(posActual);//definiendo para comparar
+            int posHijoDer = getHijoDerecho(posActual);
+            Node<T> posPadre = getPositionNode(posActual);
+            Node<T> HijoIzq = getPositionNode(posHijoIzq);
+
+            if(posHijoDer <= size){
+                Node<T> hijoDer = getPositionNode(posHijoDer);
+
+                if(HijoIzq.getPriority() < hijoDer.getPriority()){ // si la prioridad del hijo izq es menor a la del derecho 
+                    if(HijoIzq.getPriority() < posPadre.getPriority()){// y es menor que la del padre
+
+                        T tempData = posPadre.getData();
+                        int tempPrio = posPadre.getPriority(); //se almacena en una variable temporal
+
+                        posPadre.setData(HijoIzq.getData());
+                        posPadre.setPriority(HijoIzq.getPriority()); //se intercambian datos
+                        HijoIzq.setData(tempData);
+                        HijoIzq.setPriority(tempPrio);
+                }
+            }
+            }
         }
-        return result;
+
+
+        return result ;
+     
     }
     //metodo de tipo T, basicamente lo que hace es saltarse un nodo para eliminarlo y le resta a la variable de size
 
