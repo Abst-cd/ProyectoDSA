@@ -45,6 +45,7 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
                 tareasPrioridadesInsertar.enqueue(tareaPrioridad, opcionPrioridad);
                 tareasPrioridadesInsertar.verTodaQueue();
+                break;
 
             case 2:
                 System.out.println("Tareas:");
