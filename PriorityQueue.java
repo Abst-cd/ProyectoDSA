@@ -110,23 +110,70 @@ public class PriorityQueue<T> {
             Node<T> posPadre = getPositionNode(posActual);
             Node<T> HijoIzq = getPositionNode(posHijoIzq);
 
-            if(posHijoDer <= size){
-                Node<T> hijoDer = getPositionNode(posHijoDer);
+            if (posHijoDer <= size) {
 
-                if(HijoIzq.getPriority() < hijoDer.getPriority()){ // si la prioridad del hijo izq es menor a la del derecho 
-                    if(HijoIzq.getPriority() < posPadre.getPriority()){// y es menor que la del padre
+    Node<T> hijoDer = getPositionNode(posHijoDer);
 
-                        T tempData = posPadre.getData();
-                        int tempPrio = posPadre.getPriority(); //se almacena en una variable temporal
+    if (HijoIzq.getPriority() < hijoDer.getPriority()) {
 
-                        posPadre.setData(HijoIzq.getData());
-                        posPadre.setPriority(HijoIzq.getPriority()); //se intercambian datos
-                        HijoIzq.setData(tempData);
-                        HijoIzq.setPriority(tempPrio);
-                }
-            }
-            }
+        if (HijoIzq.getPriority() < posPadre.getPriority()) {
+
+            T tempData = posPadre.getData();
+            int tempPrio = posPadre.getPriority();
+
+            posPadre.setData(HijoIzq.getData());
+            posPadre.setPriority(HijoIzq.getPriority());
+
+            HijoIzq.setData(tempData);
+            HijoIzq.setPriority(tempPrio);
+            posActual = posHijoIzq;
+        } else {
+            break; //salir del while si no se cambia
         }
+        
+    } else {
+
+        if (hijoDer.getPriority() < posPadre.getPriority()) {
+
+            T tempData = posPadre.getData();
+            int tempPrio = posPadre.getPriority();
+
+            posPadre.setData(hijoDer.getData());
+            posPadre.setPriority(hijoDer.getPriority());
+
+            hijoDer.setData(tempData);
+            hijoDer.setPriority(tempPrio);
+            posActual = posHijoDer;
+        } else {
+            break;
+        }
+        
+    }
+} else {
+    if (HijoIzq.getPriority() < posPadre.getPriority()) {
+
+        T tempData = posPadre.getData();
+        int tempPrio = posPadre.getPriority();
+
+        posPadre.setData(HijoIzq.getData());
+        posPadre.setPriority(HijoIzq.getPriority());
+
+        HijoIzq.setData(tempData);
+        HijoIzq.setPriority(tempPrio);
+
+        posActual = posHijoIzq;
+
+    } else {
+
+        break;
+
+    }
+    
+}
+                
+            } 
+            
+        
 
 
         return result ;
