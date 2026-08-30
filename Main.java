@@ -4,9 +4,10 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    static PriorityQueue<String> tareasPrioridadesInsertar = new PriorityQueue<>();
+    static PriorityQueue<Task> tareasPrioridadesInsertar = new PriorityQueue<>();
     static Stack<String> listaBasicaPila = new Stack<>();
     static LinkedList<String> listaAleatoriaT = new LinkedList<>();
+    static int siguienteTaskid = 1;
 
     //que siempre sea accesible
 
@@ -39,12 +40,30 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
         switch(opcion){
             case 1:
                 System.out.println("Tarea a realizar: ");
+
                 String tareaPrioridad = entrada.readLine();
-                System.out.println("Prioridad (1 ALTA, 2 MEDIA, 3 BAJA) ");
+
+                System.out.println("Prioridad (1 ALTA, 2 MEDIA, 3 BAJA)");
+
                 int opcionPrioridad = Integer.parseInt(entrada.readLine());
 
-                tareasPrioridadesInsertar.enqueue(tareaPrioridad, opcionPrioridad);
+                Task.Prioridad prioridad;
+
+                if (opcionPrioridad == 1) {
+                    prioridad = Task.Prioridad.ALTA;
+                } else if (opcionPrioridad == 2) {
+                    prioridad = Task.Prioridad.MEDIA;
+                } else {
+                    prioridad = Task.Prioridad.BAJA;
+                }
+
+                Task tarea = new Task(siguienteTaskid, tareaPrioridad, prioridad);
+
+                tareasPrioridadesInsertar.enqueue(tarea, opcionPrioridad);
+                siguienteTaskid++;
+
                 tareasPrioridadesInsertar.verTodaQueue();
+
                 break;
 
             case 2:

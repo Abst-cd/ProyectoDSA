@@ -12,4 +12,8 @@ public class Task {
         this.descripcionCorta = descripcionCorta;
         this.prioridad = prioridad;
     } //constructor
+    @Override 
+    public String toString(){
+        return id + " - " + descripcionCorta + " - " + prioridad;
+    }
 }

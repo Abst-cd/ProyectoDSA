@@ -69,6 +69,7 @@ public class PriorityQueue<T> {
 
         while(actual != null){
             System.out.println(actual.getData());
+            System.out.println("Prioridad de la tarea: " + actual.getPriority());
             actual = actual.getNext();
 
         }
