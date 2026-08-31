@@ -39,14 +39,21 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
         switch(opcion){
             case 1:
+                String tareaPrioridad = "";
+                try{
                 System.out.println("Tarea a realizar: ");
 
-                String tareaPrioridad = entrada.readLine();
+                tareaPrioridad = entrada.readLine();
 
+                }catch(Exception e){
+                        System.out.println("Algo salio mal.");
+                }
+
+                try{
                 System.out.println("Prioridad (1 ALTA, 2 MEDIA, 3 BAJA)");
 
                 int opcionPrioridad = Integer.parseInt(entrada.readLine());
-
+                
                 Task.Prioridad prioridad;
 
                 if (opcionPrioridad == 1) {
@@ -61,9 +68,13 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
                 tareasPrioridadesInsertar.enqueue(tarea, opcionPrioridad);
                 siguienteTaskid++;
+            } catch(Exception e){
+                System.out.println("Escribe numeros.");
+            }
 
                 tareasPrioridadesInsertar.verTodaQueue();
-
+            
+            
                 break;
 
             case 2:
@@ -72,7 +83,7 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
                 break;
             case 3:
-                
+                try{ 
                 System.out.println("1. Insertar tarea");
                 System.out.println("2. Eliminar Tarea");
                 System.out.println("3.  Ver ultima tarea agregada");
@@ -81,12 +92,16 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
                 System.out.println("Que desea hacer?");
                 Byte opcionPila = Byte.parseByte(entrada.readLine());
                 MenuColaTBasicas(opcionPila, entrada);
+                } catch (Exception e){
+                    System.out.println("Necesitas usar numeros.");
+                }
                 break;
             case 4:
                 System.out.println("Tareas:");
                 listaBasicaPila.displayStack();
                 break;
             case 5:
+                try{
                 System.out.println("1. Insertar tarea");
                 System.out.println("2. Eliminar Tarea");
                 System.out.println("3.  Ver ultima tarea agregada");
@@ -94,6 +109,10 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
                 Byte opcionLista = Byte.parseByte(entrada.readLine());
 
                 MenuListaTBasicas(opcionLista, entrada);
+                } catch (Exception e){
+                    System.out.println("Necesitas usar numeros.");
+
+                }
                 break;
             case 6:
                 System.out.println("Tareas pendientes de Recursos Humanos: ");
@@ -107,22 +126,31 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
     public static void MenuColaTBasicas(Byte opcionPila,  BufferedReader entrada) throws IOException{
         
         switch (opcionPila){
+            
             case 1:
+                try{
                 System.out.println("Tarea a insertar:");
                 String tareaI = entrada.readLine();
                 listaBasicaPila.push(tareaI);
+                } catch(Exception e){
+                System.out.println("Algo salio mal");
+                }
+
                 break;
             case 2:
                 System.out.println("Eliminando tarea...");
                 listaBasicaPila.pop();
                 System.out.println("Done.");
+
                 break;
             case 3:
                 System.out.println("Ultima tarea agregada: ");
                 listaBasicaPila.peek();
+
                 break;
             case 4:
                 return;
+                
         }
        
 
@@ -132,9 +160,13 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
     public static void MenuListaTBasicas(Byte opcionLista, BufferedReader entrada) throws IOException {
         switch(opcionLista){
         case 1:
+            try{
             System.out.println("Tarea a instertar: ");
             String insertarLista = entrada.readLine();
             listaAleatoriaT.insert(insertarLista);
+            } catch(Exception e){
+                System.out.println("Algo salio mal");
+            }
 
             break;
         case 2:
