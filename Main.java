@@ -73,7 +73,6 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
                 System.out.println("Escribe numeros.");
             }
 
-                tareasPrioridadesInsertar.verTodaQueue();
             
             
                 break;
@@ -149,8 +148,13 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
                 break;
             case 3:
-                System.out.println("Ultima tarea agregada: ");
+                try{
+
+                             System.out.println("Ultima tarea agregada: ");
                 listaBasicaPila.peek();
+                } catch(Exception e){
+                    System.out.println("Algo salio mal.");
+                }
 
                 break;
             case 4:
