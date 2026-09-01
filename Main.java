@@ -17,20 +17,21 @@ public class Main {
         do {
         System.out.println("| -- MENU RECURSOS HUMANOS GOOGLE -- |\n");
         System.out.println("Cosas que hacer:");
-        System.out.println("1. Asignacion tareas prioridad.");
-        System.out.println("2. Consulta tareas de prioridad");
-        System.out.println("3. Asignacion tareas del diario");
-        System.out.println("4. Consulta tareas del diario");
-        System.out.println("5. Asignacion tareas pendientes");
-        System.out.println("6. Consulta tareas pendientes");
-        System.out.println("7. Salir");
+        System.out.println("1. Crear tareas de prioridad.");
+        System.out.println("2. Eliminar tareas de prioridad");
+        System.out.println("3. Consulta tareas de prioridad");
+        System.out.println("4. Asignacion tareas del diario");
+        System.out.println("5. Consulta tareas del diario");
+        System.out.println("6. Asignacion tareas pendientes");
+        System.out.println("7. Consulta tareas pendientes");
+        System.out.println("8. Salir");
         System.out.println("------------------------------------\n");
         System.out.println("Que quiere hacer?");
         opcionPrincipal = Byte.parseByte(entrada.readLine());
 
         menuPrincipal(opcionPrincipal, entrada);
 
-        }while (opcionPrincipal != 7);
+        }while (opcionPrincipal != 8);
         }
 
 
@@ -76,13 +77,17 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
             
             
                 break;
-
             case 2:
+                System.out.println("Eliminando tarea...");
+                tareasPrioridadesInsertar.dequeue();
+                System.out.println("Tarea eliminada.");
+                break;
+            case 3:
                 System.out.println("Tareas:");
                 tareasPrioridadesInsertar.verTodaQueue();
 
                 break;
-            case 3:
+            case 4:
                 try{ 
                 System.out.println("1. Insertar tarea");
                 System.out.println("2. Eliminar Tarea");
@@ -96,11 +101,11 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
                     System.out.println("Necesitas usar numeros.");
                 }
                 break;
-            case 4:
+            case 5:
                 System.out.println("Tareas:");
                 listaBasicaPila.displayStack();
                 break;
-            case 5:
+            case 6:
                 try{
                 System.out.println("1. Insertar tarea");
                 System.out.println("2. Eliminar Tarea");
@@ -114,7 +119,7 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
 
                 }
                 break;
-            case 6:
+            case 7:
                 System.out.println("Tareas pendientes de Recursos Humanos: ");
                 listaAleatoriaT.display();
                 break;
