@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException  {
     BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));   
+    try{
         Byte opcionPrincipal;
         do {
         System.out.println("| -- MENU RECURSOS HUMANOS GOOGLE -- |\n");
@@ -27,11 +28,16 @@ public class Main {
         System.out.println("8. Salir");
         System.out.println("------------------------------------\n");
         System.out.println("Que quiere hacer?");
+        
         opcionPrincipal = Byte.parseByte(entrada.readLine());
 
         menuPrincipal(opcionPrincipal, entrada);
+        
 
         }while (opcionPrincipal != 8);
+    } catch (Exception e){
+            System.out.println("ALGO SALIO MAL.");
+        }
         }
 
 
@@ -108,8 +114,9 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
                 try{
                 System.out.println("1. Insertar tarea");
                 System.out.println("2. Eliminar Tarea");
-                System.out.println("3.  Ver ultima tarea agregada");
-                System.out.println("4. Regresar");
+                System.out.println("3. Existe la tarea?");
+                System.out.println("4. Ver ultima tarea agregada");
+                System.out.println("5. Regresar");
                 Byte opcionLista = Byte.parseByte(entrada.readLine());
 
                 MenuListaTBasicas(opcionLista, entrada);
@@ -184,10 +191,21 @@ public static void menuPrincipal(int opcion, BufferedReader entrada) throws IOEx
             listaAleatoriaT.delete();
             break;
         case 3:
+            System.out.println("Tarea que desea buscar:");
+            String tareaBuscar = entrada.readLine();
+            boolean encontrada = listaAleatoriaT.findinLista(tareaBuscar);
+
+            if(encontrada){
+                System.out.println(tareaBuscar + " fue encontrada!");
+            } else {
+                System.out.println("No existe la tarea.");
+            }
+            break;
+        case 5:
             System.out.println("Tareas agregadas:");
             listaAleatoriaT.display();
             break;
-        case 4:
+        case 6:
             return;
         }
     }

@@ -21,6 +21,22 @@
       }
     }
 
+    public boolean findinLista(T data) {
+
+    Node<T> actual = head;
+
+    while (actual != null) {
+
+        if (actual.getData().equals(data)) {
+            return true;
+        }
+
+        actual = actual.getNext();
+    }
+
+    return false;
+}
+
         public int size(){
          int size = 0;
          Node<T> actual = head;

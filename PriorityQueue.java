@@ -215,6 +215,7 @@ public class PriorityQueue<T> {
         return actual;
     }
 
+
     //estos metodos para la comparacion
     public int getHijoIzq(int n){
         return 2 * n;
